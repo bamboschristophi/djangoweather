@@ -2,6 +2,26 @@
 
 {% block content %}
 
-<h1>Hello World!!</h1>
+{% if zipcode %}
+    {{ zipcode }}
+{% endif %}
+
+{% if api %}
+    {% if api == "Error..." %}
+        <h2>Sorry, there was an error. Please try again.</h2>
+    {% else %}
+
+    <div class="alert {{ category_color }}" role="alert">
+        <h1>{{ api.0.Category.Name }}</h1>
+        Current {{ api.0.ReportingArea }} Air Quality: {{ api.0.AQI }}
+    <hr>
+    
+    <p>{{ category_description }}</p>
+
+    </div>
+
+    {% endif %}
+
+{% endif %}
 
 {% endblock %}
